@@ -1,5 +1,53 @@
 # Backend Challenge 20230105
 
+## O que foi utilizado
+ - PHP-FPM
+ - Docker
+ - Laravel
+ - Laravel Sail (Para facilitar o uso com docker)
+ - Laravel Horizon (Para vizualizar os Jobs Assincronos)
+ - MongoDB (MongoDb Atlas)
+ - PHP Pest (Testes Automatizados)
+ - laravel pint (Estilização de codigo)
+ - Nginx
+ - Redis (Controle de filas e de cache)
+### O projeto possui uma cron que é executada sempre as 3 da manhã onde ele popula o banco de dados
+## Instrucoes
+
+- ### instalação do projeto
+    - Clone o repositorio
+    ``` bash
+    git clone https://github.com/FranszKafkaa/desafiocoodesh
+    ```
+     - Vá para a pasta do projeto e copie o .env.example para um .env
+    ```bash
+    cd desafiocoodesh && cp .env.example .env
+    ```
+    - Rode o build utilizando o laravel sail (ou docker compose se preferir)
+    ```bash
+    ./vendor/bin/sail build
+    ```
+    - Após o build rode o projeto
+    ```bash
+    ./vendor/bin/sail up -d
+    ```
+    - Faca a migracao do banco de dados (tenha certeza de que o .env esteja configurado e com os MONGODB_URI e MONGODB_DATABASE estejam corretos)
+    ```bash
+    ./vendor/bin/sail artisan migrate
+    ```
+
+## Testes Automatizados
+- Testes
+```bash
+./vendor/bin/sail pest
+```
+
+## Endpoints
+- GET /api/products -- listagem de todos os produtos 
+- GET /api/products/{code} -- listagem de um produto em especifico
+- PUT /api/products/{code} -- Atualizar o produto, (Consultar products.json)
+- DELETE /api/products/{code} -- Deletar um produto
+- GET /horizon -- entrar no portal do laravel horizon para vizualizar os jobs em execução
 ## Introdução
 
 Nesse desafio trabalharemos no desenvolvimento de uma REST API para utilizar os dados do projeto Open Food Facts, que é um banco de dados aberto com informação nutricional de diversos produtos alimentícios.
